@@ -11,7 +11,7 @@ def getMaxRevenue(profits_per_click,number_of_clicks):
     number_of_clicks = sorted(number_of_clicks,reverse=True)
     
     # Return the sum of all corresponding products
-    print(int(reduce(lambda x,y:x+y, [a*b for (a,b) in zip(profits_per_click,number_of_clicks)])))
+    return int(reduce(lambda x,y:x+y, [a*b for (a,b) in zip(profits_per_click,number_of_clicks)]))
 
 profits_per_click = []
 number_of_clicks = []
@@ -22,5 +22,5 @@ number_of_clicks = list(map(int,input().strip().split()))
 
 assert(num_ads == len(profits_per_click) == len(number_of_clicks))
 
-getMaxRevenue(profits_per_click,number_of_clicks)
+print(getMaxRevenue(profits_per_click,number_of_clicks))
 
