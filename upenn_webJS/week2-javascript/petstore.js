@@ -1,4 +1,6 @@
 
+"use strict";
+
 /**
  * This function should calculate the total amount of pet food that should be
  * ordered for the upcoming week.
@@ -32,7 +34,34 @@ function calculateFoodOrder(numAnimals, avgFood) {
  * @return a string containing the name of the most popular day of the week if there is only one most popular day, and an array of the strings containing the names of the most popular days if there are more than one that are most popular
  */
 function mostPopularDays(week) {
-    // IMPLEMENT THIS FUNCTION!
+    
+    if (!week || week.length<1) {
+        return null;
+    }
+
+    let trafficMap = {};
+    var mostPopular ='';
+    let maxTraffic = 0;
+    let currTraffic = 0;
+    week.forEach( (day) => {
+
+        // Update the traffic map with current day info
+        if(trafficMap.hasOwnProperty(day.name)) {
+            trafficMap[day.name] += day.traffic;
+        }else{
+            trafficMap[day.name] = day.traffic;
+        }
+        
+        // Update the global maximum
+        currTraffic = trafficMap[day.name];
+        if (currTraffic == maxTraffic) {
+            mostPopular = mostPopular.concat(' ',day.name);
+        }else if(currTraffic > maxTraffic){
+            mostPopular = day.name;
+            maxTraffic = currTraffic;
+        }
+    });
+    return (/\s/.test(mostPopular))? mostPopular.split(' '):mostPopular;
 }
 
 
@@ -48,7 +77,22 @@ function mostPopularDays(week) {
  *         empty array if the array's lengths are unequal or zero, or if any array is null.
  */
 function createAnimalObjects(names, types, breeds) {
-    // IMPLEMENT THIS FUNCTION!
+    
+    if (!(names && types && breeds)) {
+        return [];
+    }
+
+    if (names.length != types.length || names.length != breeds.length || breeds.length != types.length) {
+        return [];
+    }
+
+    let allAnimals = [];
+    let currAnimal;
+    for (let i in names) {
+        currAnimal = new Animal(names[i],types[i],breeds[i]);
+        allAnimals.push(currAnimal);
+    }
+    return allAnimals;
 }
 
 /////////////////////////////////////////////////////////////////
