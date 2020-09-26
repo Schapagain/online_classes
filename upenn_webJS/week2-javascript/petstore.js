@@ -9,11 +9,21 @@
  * 				 week, or -1 if the numAnimals or avgFood are less than 0 or non-numeric
  */
 function calculateFoodOrder(numAnimals, avgFood) {
-    // IMPLEMENT THIS FUNCTION!
+
+    if (typeof(numAnimals)!='number' || typeof(avgFood)!='number') {
+        return -1;
+    }
+
+    if (numAnimals < 0 || avgFood < 0) {
+        return -1;
+    }
+
+    let expectedFood = numAnimals * avgFood;
+    return expectedFood;
 }
 
 /**
- * Determines which day of the week had the most nnumber of people visiting the
+ * Determines which day of the week had the most number of people visiting the
  * pet store. If more than one day of the week has the same, highest amount of
  * traffic, an array containing the days (in any order) should be returned.
  * (ex. ["Wednesday", "Thursday"]). If the input is null or an empty array, the function
