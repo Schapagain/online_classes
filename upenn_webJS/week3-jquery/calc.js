@@ -90,8 +90,8 @@ function setInitialState(){
  }
 
  function applyOperator(a,b,operator){
-     a = parseInt(a);
-     b = parseInt(b);
+     a = Number(a);
+     b = Number(b);
      switch (operator) {
         case '+':
             return a + b;
