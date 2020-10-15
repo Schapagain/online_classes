@@ -12,9 +12,10 @@ class AddItem extends Component {
   handleSubmit(e) {
       e.preventDefault(); // this prevents the page from reloading -- do not delete this line!
 
-      // Implement the rest of this function here!
+      let tempList = {};
+      tempList[this.props.idName] = [{name: this.refs.id.value}]
+      this.setState({newItem: tempList}, () => {this.props.addItem(this.state)})
   }
-    
 
   render() {
     var divName = 'add' + this.props.idName;

@@ -8,8 +8,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-	lists: [], // this holds the name of each list
-	items: {} // this property names of this object are the names of the lists; their values are arrays of the items in each list
+      lists: [], // this holds the name of each list
+      items: {} // this property names of this object are the names of the lists; their values are arrays of the items in each list
     };
   }
 
@@ -20,7 +20,11 @@ class App extends Component {
    * as the value put into the "lists" array. It should then re-render this App component.
    */
   handleAddList(s) {
-      // Implement this function!
+    this.setState({
+      lists: this.state.lists.concat(Object.keys(s.newList)),
+      items: {...this.state.items,...s.newList}
+    })
+
   }
 
   /**
@@ -32,7 +36,13 @@ class App extends Component {
    * the state, this function  should then re-render this App component.
    */
   handleAddItem(s) {
-      // Implement this function!
+
+      let tempItems = {...this.state.items}
+      const listName = Object.keys(s.newItem)[0]
+      tempItems[listName] = tempItems[listName].concat(s.newItem[listName]);
+      this.setState({
+        items: tempItems,
+      },()=>{console.log(this.state)})
   }
 
   /**
