@@ -31,18 +31,18 @@ const findMSTCost = fileName => {
         // Construct adjacency list representation of the graph
         let G = new Map();
     
-        let u,v,e;
+        let u,v,w;
         for (let i = 0; i < E; i++) {
-            [u,v,e] = edges[i];
+            [u,v,w] = edges[i];
             if (G.has(u)) {
-                G.set(u,G.get(u).concat([{val:[u,v],priority:e}]));
+                G.set(u,G.get(u).concat([{val:[u,v],priority:w}]));
             }else{
-                G.set(u,[{val:[u,v],priority:e}]);
+                G.set(u,[{val:[u,v],priority:w}]);
             }
             if (G.has(v)) {
-                G.set(v,G.get(v).concat([{val:[u,v],priority:e}]));
+                G.set(v,G.get(v).concat([{val:[u,v],priority:w}]));
             }else{
-                G.set(v,[{val:[u,v],priority:e}]);
+                G.set(v,[{val:[u,v],priority:w}]);
             }
         }
         const firstNode = G.get(edges[0][0]);
@@ -53,7 +53,7 @@ const findMSTCost = fileName => {
         let visited = new Set([edges[0][0]]);
         
     
-        let smallestEdge,u,v,w;
+        let smallestEdge;
         let mstCost = 0;
         while (minHeap.size && visited.size < V){
     
@@ -82,3 +82,5 @@ const findMSTCost = fileName => {
     
     });    
 }
+
+findMSTCost('edges.txt');
